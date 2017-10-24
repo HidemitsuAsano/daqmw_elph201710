@@ -97,6 +97,7 @@ int NIMEASIROCReader2::daq_configure()
     paramList = m_daq_service0.getCompParams();
     parse_params(paramList);
     
+    //calls a ruby script to initialize NIMEASIROC
     std::string rubydir = "/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/NIMEASIROCReader2/ruby/Controller.rb";
     std::string execmd  = rubydir + " " + m_srcAddr; 
     std::cout << std::endl;
@@ -172,7 +173,8 @@ int NIMEASIROCReader2::daq_configure()
 
     //Go to DAQ mode from monitor mode
     DaqMode();
-    std::cout << "set recv. time out " << m_recvtimeout << std::endl;
+
+    std::cout << "set recv. time out " << m_recvtimeout << " sec" << std::endl;
 
     m_sock->setOptRecvTimeOut(m_recvtimeout);
     m_out_status = BUF_SUCCESS;
