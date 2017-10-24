@@ -14,20 +14,23 @@ This directory is for operation of DAQ-MW.
 # stop and clean up everything
   ./kill_All.sh
 
-# pop up windows
-./show_logs.sh	           
+# pop up windows to look logs of each component
+ ./show_logs.sh	           
 
 # How to check running component
   pgrep -fl Comp
 
-# connection check of device whose IP is 192.168.10.{0-255}
-./check_ip_connected.bash
+# connection check of device whose IP is 192.168.10.{0-254} and 192.168.11.{0-254}
+ ./check_ip_connected.bash
 
 # operation of prescalar
-./set_prescaler.sh 
+ ./set_prescaler.sh 
+
+# set DRS4QDC's NIM-out port
+ ./set_drs4nimout.sh
 
 # start vnc at port 5901. Its resolution is 1920 x 1080 
-./vnc_LG1920x1080.sh
+ ./vnc_LG1920x1080.sh
 
 # reconfig FPGA of HUL (takes 15 seconds)
-./reconfig_hulscaler.sh	        
+ ./reconfig_hulscaler.sh	        
