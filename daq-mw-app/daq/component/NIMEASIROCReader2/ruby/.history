@@ -1,0 +1,30 @@
+read
+help
+read 1 1
+read 1 1
+read 1 2
+read 1 1
+read 1 1
+read 100 1
+read 10 1
+read 10 1
+read 20 2
+read 10 1
+read 10 1
+read 10 1
+read 10 1
+read 10000 1
+read 10000 3
+.q
+read 10 4
+read 10 5
+read 4208 100
+read 10000 100
+read 10000 100
+read 10000 100
+read 50000 100
+slowcontrol 
+slowcontrol 
+slowcontrol 
+slowcontrol 
+read 1000 10

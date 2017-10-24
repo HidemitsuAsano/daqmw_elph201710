@@ -1,0 +1,30 @@
+# Register value of LTC2656-L12
+# Max range = 12 bit, 2.5 V
+# LSB       = 0.61 mV
+
+# DC bias for DRS4 and AD9220 (2246)
+StartDefinition firstDAC
+  #Name		Ch A	Ch B	Ch C	Ch D
+  #		ROFS	OOFS	CALp	CALn
+#  register	2541	2049	1315    1315
+#  register	1802	2049	1315    1315
+####  default ####
+#  register	1802	2131	1315	1315
+####  default ####
+#  register	1802	2246	1315	1315
+############################ test
+  register	2048	2049	1315    1315
+EndDefinition
+
+# Vth, from 1 ch to 8 ch
+StartDefinition secondDAC
+  #Name		Ch A	Ch B	Ch C	Ch D	Ch E	Ch F	Ch G	Ch H
+  register	222	309	 83	300	210	 83	115	115
+EndDefinition
+
+# Vth, from 9 ch to 16 ch
+StartDefinition thirdDAC
+  #Name		Ch A	Ch B	Ch C	Ch D	Ch E	Ch F	Ch G	Ch H
+  register	107	111	99	136	174	128	163	137
+EndDefinition
+

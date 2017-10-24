@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<configInfo>
+  <daqOperator>
+    <hostAddr>127.0.0.1</hostAddr>
+  </daqOperator>
+  <daqGroups>
+    <daqGroup gid="group0">
+      
+      <components>
+        <component cid="Drs4QdcReader0">
+          <hostAddr>127.0.0.1</hostAddr>
+          <hostPort>50000</hostPort>
+          <instName>Drs4QdcReader0.rtc</instName>
+          <execPath>/home/e16/work/K1.8-beam-test-201704/daq-mw-app/daq/component/Drs4QdcReader/Drs4QdcReaderComp</execPath>
+          <confFile>/tmp/daqmw/rtc.conf</confFile>
+          <startOrd>4</startOrd>
+          <inPorts>
+          </inPorts>
+          <outPorts>
+            <outPort>out0</outPort>
+          </outPorts>
+          <params>
+            <param pid="srcAddr">192.168.10.16</param>
+            <param pid="srcPort">24</param>
+            <param pid="hasBoardId">true</param>
+            <param pid="execSetDaqReg">/home/e16/work/K1.8-beam-test-201704/vme_drs_v5.1_tdc/daq/bin/set_daqreg</param>
+          </params>
+        </component>
+        
+        <component cid="BestEffortDispatcher0">
+          <hostAddr>127.0.0.1</hostAddr>
+          <hostPort>50000</hostPort>
+          <instName>BestEffortDispatcher0.rtc</instName>
+          <execPath>/home/e16/work/K1.8-beam-test-201704/daq-mw-app/daq/component/BestEffortDispatcher/BestEffortDispatcherComp</execPath>
+          <confFile>/tmp/daqmw/rtc.conf</confFile>
+          <startOrd>3</startOrd>
+          <inPorts>
+            <inPort from="Drs4QdcReader0:out0"
+                    buffer_length="4096"
+                    >in0</inPort>
+          </inPorts>
+          <outPorts>
+            <outPort>out0</outPort> <!-- standard -->
+            <outPort>out1</outPort> <!-- best effort -->
+          </outPorts>
+          <params>
+          </params>
+        </component>
+        
+        <component cid="Drs4QdcMonitor0">
+          <hostAddr>127.0.0.1</hostAddr>
+          <hostPort>50000</hostPort>
+          <instName>Drs4QdcMonitor0.rtc</instName>
+          <execPath>/home/e16/work/K1.8-beam-test-201704/daq-mw-app/daq/component/Drs4QdcMonitor/Drs4QdcMonitorComp</execPath>
+          <confFile>/tmp/daqmw/rtc.conf</confFile>
+          <startOrd>2</startOrd>
+          <inPorts>
+            <inPort from="BestEffortDispatcher0:out1"
+                    buffer_length="4096"
+                    >in0</inPort>
+          </inPorts>
+          <outPorts>
+          </outPorts>
+          <params>
+            <param pid="server">http:192.168.30.113:8888?thrds=8;monitoring=500</param>
+            <param pid="hasTDC">true</param>
+            <param pid="t0">16</param>
+          </params>
+        </component>
+        
+        <component cid="DaqLoggerDrs0">
+          <hostAddr>127.0.0.1</hostAddr>
+          <hostPort>50000</hostPort>
+          <instName>DaqLoggerDrs0.rtc</instName>
+          <execPath>/home/e16/work/K1.8-beam-test-201704/daq-mw-app/daq/component/DaqLogger/DaqLoggerDrsComp</execPath>
+          <confFile>/tmp/daqmw/rtc.conf</confFile>
+          <startOrd>1</startOrd>
+          <inPorts>
+            <inPort from="BestEffortDispatcher0:out0">in0</inPort>
+          </inPorts>
+          <outPorts>
+          </outPorts>
+          <params>
+            <param pid="dataDirName">/mnt/data-disk2/K1.8-201705/data/drs</param>
+            
+            <param pid="compress">true</param>
+            <param pid="overwrite">2</param>
+            <!-- overwrite policy :: 0 : ignore, 1 : warning, 2 : error(=run stop) -->
+          </params>
+        </component>
+        
+      </components>
+    </daqGroup>
+
+  </daqGroups>
+</configInfo>

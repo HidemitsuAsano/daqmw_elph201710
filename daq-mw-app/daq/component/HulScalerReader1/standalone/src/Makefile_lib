@@ -1,0 +1,24 @@
+CXX = g++
+CXXFLAGS	+= -O3 -Wall -g -MMD -fPIC $(shell root-config --cflags)
+CXXFLAGS  += -I/usr/include/daqmw
+LDFLAGS += -shared
+LIBS = -L/usr/lib64/daqmw -lSock
+
+all: libBitDump.so\
+   libUDPRBCP.so\
+   libFPGAModule.so
+
+libBitDump.so: BitDump.o
+	$(CXX) $(LDFLAGS) $^ $(LIBS) -o $@
+  
+libUDPRBCP.so: UDPRBCP.o
+	$(CXX) $(LDFLAGS) $^ $(LIBS) -o $@
+
+libFPGAModule.so: FPGAModule.o
+	$(CXX) $(LDFLAGS) $^ $(LIBS) -o $@
+
+%.o: %.cc
+	$(CXX) $(CXXFLAGS)  -c -MMD $< -o $@
+	
+clean:
+	rm -rf *.o *~ *.so *.d

@@ -1,0 +1,9 @@
+MONITOR
+
+data structure
+1. NIMEASIROC1
+2. NIMEASIROC2
+3. DRS4Qdc1
+4. DRS4Qdc2
+5. HULMezzanineHRTdc1
+6. HULTdc1

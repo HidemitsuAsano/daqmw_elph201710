@@ -1,0 +1,9 @@
+#!/bin/sh
+ipaddr=192.168.10.4
+
+rMacro='macro/check_eff_single.C("'$1'")'
+
+./bin/daq $ipaddr $1 $2
+./bin/decoder $1
+root -l $rMacro
+#./bin/lutmaker $1

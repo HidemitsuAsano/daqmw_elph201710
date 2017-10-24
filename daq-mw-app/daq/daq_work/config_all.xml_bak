@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!-- DON'T REMOVE THE ABOVE LINE.                                     -->
+<!-- DON'T PUT ANY LINES ABOVE THE 1ST LINE.                          -->
+<!-- config.xml to run -->
+<!-- 1. NIMEASIROCReader1 -->
+<!-- 2. NIMEASIROCReader2 -->
+<!-- 3. Drs4QdcReader1 -->
+<!-- 4. Drs4QdcReader2 -->
+<!-- 5. HulScalerReader1 -->
+<!-- 6. Monitor -->
+<!-- 7. BestEffortDispatcher -->
+<!-- 8. Logger  -->
+<!-- Please rewrite execPath (2 places), confFile (2 places) suitable -->
+<!-- for your directory structure.                                    -->
+<!-- run.py will create rtc.conf in /tmp/daqmw/rtc.conf               -->
+<!-- If you use run.py, set confFile as /tmp/daqmw/rtc.conf           -->
+<configInfo>
+    <daqOperator>
+        <hostAddr>127.0.0.1</hostAddr>
+    </daqOperator>
+    <daqGroups>
+        <daqGroup gid="group0">
+            <components>
+                <!--Reader-->
+                <component cid="NIMEASIROCReader10">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCReader10.rtc</instName>
+                    <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/NIMEASIROCReader1/NIMEASIROCReader1Comp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>4</startOrd>
+                    <inPorts>
+                    </inPorts>
+                    <outPorts>
+                        <outPort>out0</outPort>
+                    </outPorts>
+                    <params>
+                        <param pid="srcAddr0">192.168.10.16</param>
+                        <param pid="srcPort0">24</param>
+                    </params>
+                </component>
+                <component cid="NIMEASIROCReader20">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCReader20.rtc</instName>
+                    <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/NIMEASIROCReader2/NIMEASIROCReader2Comp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>5</startOrd>
+                    <inPorts>
+                    </inPorts>
+                    <outPorts>
+                        <outPort>out1</outPort>
+                    </outPorts>
+                    <params>
+                        <param pid="srcAddr1">192.168.10.100</param>
+                        <param pid="srcPort1">24</param>
+                    </params>
+                </component>
+                <component cid="Drs4QdcReader10">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                     <instName>Drs4QdcReader10.rtc</instName>
+                     <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/Drs4QdcReader1/Drs4QdcReader1Comp</execPath>
+                      <confFile>/tmp/daqmw/rtc.conf</confFile>
+                      <startOrd>6</startOrd>
+                      <inPorts>
+                      </inPorts>
+                      <outPorts>
+                          <outPort>out2</outPort>
+                      </outPorts>
+                      <params>
+                          <param pid="srcAddr2">192.168.10.50</param>
+                          <param pid="srcPort2">24</param>
+                          <param pid="hasBoardId">true</param>
+                          <param pid="execSetDaqReg">/home/daq1/work/ELPH_201710/vme_drs_v5.1_tdc/daq/bin/set_daqreg</param>
+                     </params>
+                </component>
+                <component cid="Drs4QdcReader20">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                     <instName>Drs4QdcReader20.rtc</instName>
+                     <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/Drs4QdcReader2/Drs4QdcReader2Comp</execPath>
+                      <confFile>/tmp/daqmw/rtc.conf</confFile>
+                      <startOrd>7</startOrd>
+                      <inPorts>
+                      </inPorts>
+                      <outPorts>
+                          <outPort>out3</outPort>
+                      </outPorts>
+                      <params>
+                          <param pid="srcAddr3">192.168.10.51</param>
+                          <param pid="srcPort3">24</param>
+                          <param pid="hasBoardId">true</param>
+                          <param pid="execSetDaqReg">/home/daq1/work/ELPH_201710/vme_drs_v5.1_tdc/daq/bin/set_daqreg</param>
+                     </params>
+                </component>
+                <component cid="HulScalerReader10">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                     <instName>HulScalerReader10.rtc</instName>
+                     <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/HulScalerReader1/HulScalerReader1Comp</execPath>
+                      <confFile>/tmp/daqmw/rtc.conf</confFile>
+                      <startOrd>8</startOrd>
+                      <inPorts>
+                      </inPorts>
+                      <outPorts>
+                          <outPort>out4</outPort>
+                      </outPorts>
+                      <params>
+                          <param pid="srcAddr4">192.168.10.21</param>
+                          <param pid="srcPort4">24</param>
+                     </params>
+                </component>
+                <!--Reader end-->
+                <!-- Dispatcher and Event Builder -->
+                <component cid="BestEffortDispatcher0">
+                   <hostAddr>127.0.0.1</hostAddr>
+                   <hostPort>50000</hostPort>
+                   <instName>BestEffortDispatcher0.rtc</instName>
+                   <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/BestEffortDispatcher/BestEffortDispatcherComp</execPath>
+                   <confFile>/tmp/daqmw/rtc.conf</confFile>
+                   <startOrd>3</startOrd>
+                   <inPorts>
+                     <inPort from="NIMEASIROCReader10:out0">in0</inPort>
+                     <inPort from="NIMEASIROCReader20:out1">in1</inPort>
+                     <inPort from="Drs4QdcReader10:out2"
+                        buffer_length="4096">in2</inPort> 
+                     <inPort from="Drs4QdcReader20:out3"
+                        buffer_length="4096">in3</inPort> 
+                     <inPort from="HulScalerReader10:out4">in4</inPort>
+                   </inPorts>
+                   <outPorts>
+                     <outPort>out0</outPort><!--standard type -->
+                     <outPort>out1</outPort><!--best effort type -->
+                   </outPorts>
+                   <params/>
+                </component>
+                <component cid="Monitor0">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>Monitor0.rtc</instName>
+                    <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/Monitor/MonitorComp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>2</startOrd>
+                    <inPorts>
+                        <inPort from="BestEffortDispatcher0:out1"
+                        buffer_length="4096"
+                        >in0</inPort>
+                    </inPorts>
+                    <outPorts>
+                    </outPorts>
+                    <params>
+                        <param pid="monitorUpdateRate">20</param>
+                        <param pid="server0">http:127.0.0.1:8888;monitoring=500</param>
+                        <param pid="hasTDC">true</param>
+                        <param pid="t0">16</param>
+                    </params>
+                </component>
+                <component cid="DAQLogger0">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>DAQLogger0.rtc</instName>
+                    <execPath>/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/DAQLogger/DAQLoggerComp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>1</startOrd>
+                    <inPorts>
+                       <inPort from="BestEffortDispatcher0:out0">in0</inPort>
+                    </inPorts>
+                    <outPorts>
+                    </outPorts>
+                    <params>
+                       <param pid="dirName">/data/data_201710ELPH</param>
+                       <param pid="isLogging">yes</param>
+                       <param pid="maxFileSizeInMegaByte">4096</param>
+                    </params>
+                </component>
+            </components>
+        </daqGroup>
+    </daqGroups>
+</configInfo>

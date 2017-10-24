@@ -1,0 +1,31 @@
+BINDIR		= ../bin
+CXXFLAGS	+= -Wall -g -MMD $(shell root-config --cflags)
+LDFLAGS		+= -lz $(shell root-config --libs)
+
+SRCALL		= $(wildcard *.cc)
+DEPENDS		= $(SRCALL:.cc=.d)
+
+SRC		= $(filter-out %main.cc,$(SRCALL))
+OBJ		= $(SRC:.cc=.o)
+
+all: debug set_nimio reconfig_fpga daq decoder
+
+debug: debug_main.o $(OBJ)
+	$(CXX) -o $(BINDIR)/$@ $< $(OBJ) $(LDFLAGS)
+
+set_nimio: set_nimio_main.o $(OBJ)
+	$(CXX) -o $(BINDIR)/$@ $< $(OBJ) $(LDFLAGS)
+
+reconfig_fpga: reconfig_fpga_main.o $(OBJ)
+	$(CXX) -o $(BINDIR)/$@ $< $(OBJ) $(LDFLAGS)
+
+daq: daq_main.o $(OBJ)
+	$(CXX) -o $(BINDIR)/$@ $< $(OBJ) $(LDFLAGS)
+
+decoder: decoder_main.o $(OBJ)
+	$(CXX) -o $(BINDIR)/$@ $< $(OBJ) $(LDFLAGS)
+
+clean:
+	$(RM) $(BINDIR)/* *.o *.d *~
+
+-include $(DEPENDS)

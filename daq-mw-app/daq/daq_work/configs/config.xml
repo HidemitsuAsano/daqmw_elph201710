@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!-- DON'T REMOVE THE ABOVE LINE.                                     -->
+<!-- DON'T PUT ANY LINES ABOVE THE 1ST LINE.                          -->
+<!-- config.xml to run NIMEASIROCReader and NIMEASIROCMonitor         -->
+<!-- Please rewrite execPath (2 places), confFile (2 places) suitable -->
+<!-- for your directory structure.                                    -->
+<!-- run.py will create rtc.conf in /tmp/daqmw/rtc.conf               -->
+<!-- If you use run.py, set confFile as /tmp/daqmw/rtc.conf           -->
+<configInfo>
+    <daqOperator>
+        <hostAddr>127.0.0.1</hostAddr>
+    </daqOperator>
+    <daqGroups>
+        <daqGroup gid="group0">
+            <components>
+                <component cid="NIMEASIROCReader0">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCReader0.rtc</instName>
+                    <execPath>/home_local/highp/MyDaq/chikuma_nim_easiroc2/reader/NIMEASIROCReaderComp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>4</startOrd>
+                    <inPorts>
+                    </inPorts>
+                    <outPorts>
+                        <outPort>out0</outPort>
+                    </outPorts>
+                    <params>
+                        <param pid="srcAddr0">192.168.10.16</param>
+                        <param pid="srcPort0">24</param>
+                    </params>
+                </component>
+                <component cid="NIMEASIROCReader10">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCReader10.rtc</instName>
+                    <execPath>/home_local/highp/MyDaq/chikuma_nim_easiroc2/reader1/NIMEASIROCReader1Comp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>5</startOrd>
+                    <inPorts>
+                    </inPorts>
+                    <outPorts>
+                        <outPort>out1</outPort>
+                    </outPorts>
+                    <params>
+                        <param pid="srcAddr1">192.168.10.100</param>
+                        <param pid="srcPort1">24</param>
+                    </params>
+                </component>
+
+                <component cid="Dispatcher0">
+                   <hostAddr>127.0.0.1</hostAddr>
+                   <hostPort>50000</hostPort>
+                   <instName>Dispatcher0.rtc</instName>
+                   <execPath>/home_local/highp/MyDaq/chikuma_nim_easiroc2/dispatcher2/DispatcherComp</execPath>
+                   <confFile>/tmp/daqmw/rtc.conf</confFile>
+                   <startOrd>3</startOrd>
+                   <inPorts>
+                     <inPort from="NIMEASIROCReader0:out0">dispatcher_in0</inPort>
+                     <inPort from="NIMEASIROCReader10:out1">dispatcher_in1</inPort>
+                   </inPorts>
+                   <outPorts>
+                      <outPort>dispatcher_out0</outPort>
+                     <outPort>dispatcher_out1</outPort>
+                   </outPorts>
+                   <params/>
+                </component>
+                <component cid="NIMEASIROCLogger0">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCLogger0.rtc</instName>
+                    <execPath>/home_local/highp/MyDaq/chikuma_nim_easiroc2/logger/NIMEASIROCLoggerComp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>1</startOrd>
+                    <inPorts>
+                       <inPort from="Dispatcher0:dispatcher_out0">NIMASIROClogger_in</inPort>
+                    </inPorts>
+                    <outPorts>
+                    </outPorts>
+                    <params>
+                       <param pid="dirName">/home_local/highp/MyDaq/data</param>
+                       <param pid="isLogging">yes</param>
+                       <param pid="maxFileSizeInMegaByte">4096</param>
+                    </params>
+                </component>
+                <component cid="NIMEASIROCMonitor0">
+                    <hostAddr>127.0.0.1</hostAddr>
+                    <hostPort>50000</hostPort>
+                    <instName>NIMEASIROCMonitor0.rtc</instName>
+                    <execPath>/home_local/highp/MyDaq/chikuma_nim_easiroc2/monitor/NIMEASIROCMonitorComp</execPath>
+                    <confFile>/tmp/daqmw/rtc.conf</confFile>
+                    <startOrd>2</startOrd>
+                    <inPorts>
+                        <inPort from="Dispatcher0:dispatcher_out1">NIMEASIROCmonitor_in</inPort>
+                    </inPorts>
+                    <outPorts>
+                    </outPorts>
+                    <params>
+                        <param pid="monitorUpdateRate">20</param>
+                    </params>
+                </component>
+            </components>
+        </daqGroup>
+    </daqGroups>
+</configInfo>

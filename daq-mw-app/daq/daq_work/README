@@ -1,0 +1,33 @@
+Oct.10th 2017
+Hidemitsu Asano
+
+This directory is for operation of DAQ-MW.
+
+# How to start DAQ
+  ./start_daq.sh
+  or 
+  run.py -cl config_all.xml
+
+  if you want to run with webUI
+  run.py -l config_all.xml
+
+# stop and clean up everything
+  ./kill_All.sh
+
+# pop up windows
+./show_logs.sh	           
+
+# How to check running component
+  pgrep -fl Comp
+
+# connection check of device whose IP is 192.168.10.{0-255}
+./check_ip_connected.bash
+
+# operation of prescalar
+./set_prescaler.sh 
+
+# start vnc at port 5901. Its resolution is 1920 x 1080 
+./vnc_LG1920x1080.sh
+
+# reconfig FPGA of HUL (takes 15 seconds)
+./reconfig_hulscaler.sh	        

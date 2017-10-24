@@ -1,0 +1,122 @@
+read
+help
+read 1 1
+read 1 1
+read 1 2
+read 1 1
+read 1 1
+read 100 1
+read 10 1
+read 10 1
+read 20 2
+read 10 1
+read 10 1
+read 10 1
+read 10 1
+read 10000 1
+read 10000 3
+.q
+read 10 4
+read 10 5
+read 4208 100
+help 
+read 
+read 100 2
+read 30000 6
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+read 30000 8
+read 30000 9
+read 30000 10
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+read 10000 11
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+read 30000 12
+q
+read 30000 13
+.q
+read 30000 14
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+read 60000 14
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+slowcontrol
+read 30000 16
+slowcontrol
+read 30000 17
+slowcontrol
+read 30000 18
+slowcontrol
+slowcontrol 30000 19
+read 30000 19
+slowcontrol 
+slowcontrol
+read 30000 20
+read 30000 20
+slowcontrol
+read 10000 21
+slowcontrol
+slowcontrol
+read 30000 22
+slowcontrol
+read 10000 23
+slowcontrol
+slowcontrol
+read 10000 24
+slowcontrol
+read 10000 26
+slowcontrol
+read 10000 27
+slowcontrol
+read 10000 28
+read 10000 29
+read 10000 30
+slowcontrol
+read 10000 33
+slowcontrol
+read 10000 34
+slowcontrol
+read 10000 35
+slowcontrol
+read 10000 36
+read 10000 37
+read 10000 38
+slowcontrol
+read 10000 39
+statusInputDAC
+readMadc
+help
+statusHV
+summary
+statusInputDAC(0)
+statusInputDAC
+statusInputDAC 0
+statusInputDAC 1
+statusInputDAC 2
+statusInputDAC 3
+statusInputDAC 4
+statusInputDAC 45
+statusInputDAC 100
+statusInputDAC 63
+statusInputDAC 0
+statusInputDAC 2
+statusInputDAC all
+statusHV
+exir
+_bug      config_all_default.xml  configs/                

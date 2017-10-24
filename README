@@ -1,0 +1,52 @@
+ELPH_201710 DAQ middleware components and scripts
+author:Hidemitsu Asano
+
+# setup
+Scientific Linux 7 (not tested in other OSs)
+required gcc version > 4.7
+CERN ROOT 6
+python (version ?)
+
+
+# directories
+daq_work (symbolic link) : scripts and config files for operation of DAQ-Middleware.
+            go to this directory to start daq
+ruby1 (symbolic link)  : ruby scripts for NIMEASIROC1 operation
+ruby2 (symbolic link)  : ruby scripts for NIMEASIROC2 operation
+HulScaler_standalone (symbolic link) : source codes and scripts for HUL-Scaler
+vme-drs_v5.1_tdc : source and config files for DRS4QDC. These are loaded by DAQ-Middleware. Do NOT move.
+daq-mw-app : source files of DAQ middleware components
+
+*.dat file will be generated under "/data/data_201710ELPH/". 
+log files will be copied under "log" in the directroy.
+
+# How to install Chikuma-san's ruby software 
+visit this website: 
+http://www.rcnp.osaka-u.ac.jp/~hasano/nimeasiroclog.html
+
+# setup for NIM-EASRIOC 
+   1. go to the directory "daq_work"
+   2. ln -s (NIMEASIROC's READER)/ruby1/Gemfile .
+   3. su
+   4. run "ruby/install.sh" from the directory where you run "run.py"
+   5. exit
+
+#  How to install DAQ softwares
+   1. "cd daq-mw-app/daq"
+   2. compile utility codes under "util/" and "util_easiroc/" at first.
+   3. "cd component/HulScalerReader1/standalone" and compile those codes by "Makefile_lib"
+      This makes library for HUL from Dr.Honda's codes.
+   4. go back to "component/"
+   5. type "make". This compiles all DAQ-MW components.
+
+# How to start DAQ
+  go to "daq_work"
+  ./start_daq.sh
+  or 
+  run.py -cl config_all.xml
+
+  if you want to run with webUI
+  run.py -l config.xml
+
+# How to check running component
+  pgrep -fl Comp
