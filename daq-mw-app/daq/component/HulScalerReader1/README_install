@@ -1,0 +1,5 @@
+This code relys on FPGAModule class in HUL standalone codes.
+To include this class, shared library files should be created at first in standalone/src.
+The Makefile file "Makefile_lib" should be used to do it.
+After typing "make", libBitDump.so, libFPGAModule.so, libUDPRBCP.so are created under standalone/src directory.
+
