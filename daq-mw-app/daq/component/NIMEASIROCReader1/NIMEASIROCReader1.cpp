@@ -97,6 +97,7 @@ int NIMEASIROCReader1::daq_configure()
     paramList = m_daq_service0.getCompParams();
     parse_params(paramList);
     
+    //calls a ruby script to initialize NIMEASIROC
     std::string rubydir = "/home/daq1/work/ELPH_201710/daq-mw-app/daq/component/NIMEASIROCReader1/ruby/Controller.rb";
     std::string execmd  = rubydir + " " + m_srcAddr; 
     std::cout << std::endl;
@@ -138,7 +139,6 @@ int NIMEASIROCReader1::daq_configure()
         std::cerr << "Sock Fatal Error : Unknown" << std::endl;
         fatal_error_report(USER_DEFINED_ERROR1, "SOCKET FATAL ERROR");
     }
-    //m_sock->setOptRecvTimeOut(3);
     
     // Check data port connections
     bool outport_conn = check_dataPort_connections( m_OutPort );
@@ -160,7 +160,7 @@ int NIMEASIROCReader1::daq_configure()
 
     //Go to DAQ mode from monitor mode
     DaqMode();
-    std::cout << "set recv. time out " << m_recvtimeout << std::endl;
+    std::cout << "set recv. time out " << m_recvtimeout << " sec" <<  std::endl;
 
     m_sock->setOptRecvTimeOut(m_recvtimeout); //
     m_out_status = BUF_SUCCESS;
