@@ -259,6 +259,7 @@ int FileUtils::close_file()
 int FileUtils::copy_logfiles(std::string dir_name)
 {
   dir_name += "/log";
+  std::cout << __FUNCTION__ << " Copying log files under " << dir_name << std::endl;
   //copy log files from /tmp/daqmw
   std::string datafilename = gen_file_name();
   for(int i =0;i<4;i++) datafilename.erase(datafilename.size()-1);

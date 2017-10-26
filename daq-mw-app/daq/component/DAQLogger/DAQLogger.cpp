@@ -250,10 +250,10 @@ int DAQLogger::daq_stop()
             //   }
       fileUtils->close_file();
     }
-    fileUtils->copy_logfiles(m_dirName);
     std::cout << "total # of sequence " << get_sequence_num() << std::endl;
     std::cout << "End time " << fileUtils->get_date_time() << std::endl;
     reset_InPort();
+    fileUtils->copy_logfiles(m_dirName);
     return 0;
 }
 
