@@ -12,9 +12,9 @@ SRCS += $(COMP_NAME)Comp.cpp
 CPPFLAGS += -Istandalone/src
 
 LDLIBS += -L$(DAQMW_LIB_DIR) -lSock \
-  -L$(PWD)/standalone/src -lBitDump -Wl,-rpath=$(PWD)/standalone/src \
-	-L$(PWD)/standalone/src -lUDPRBCP -Wl,-rpath=$(PWD)/standalone/src \
-	-L$(PWD)/standalone/src -lFPGAModule -Wl,-rpath=$(PWD)/standalone/src
+  -L$(PWD)/standalone/lib -lBitDump -Wl,-rpath=$(PWD)/standalone/lib \
+	-L$(PWD)/standalone/lib -lUDPRBCP -Wl,-rpath=$(PWD)/standalone/lib \
+	-L$(PWD)/standalone/lib -lFPGAModule -Wl,-rpath=$(PWD)/standalone/lib
 
 # Socket library
 #LDLIBS += -L$(DAQMW_LIB_DIR) -lSock
