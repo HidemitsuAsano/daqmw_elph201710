@@ -95,8 +95,7 @@ private:
   int write_OutPort();//DAQLogger 
   int write_BestEffort_OutPort();//Monitor
 
-  // static const int SEND_BUFFER_SIZE = 4096;
-  // unsigned char m_data[SEND_BUFFER_SIZE];
+  //number of modules
   static const int NINMODULE = 5;
 
   BufferStatus m_in0_status;
