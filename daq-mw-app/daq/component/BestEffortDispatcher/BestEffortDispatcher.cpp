@@ -589,16 +589,19 @@ int BestEffortDispatcher::daq_run()
       // header + data_body0 + data_body1 
       //        + data_body2 + data_body3 
       //        + data_body4 + footer4 
-      // 
+      
+      //sum of data size before event building
       m_inport_recv_data_size_sum = 
       m_inport_recv_data_size[0] + 
       m_inport_recv_data_size[1] +
       m_inport_recv_data_size[2] +
       m_inport_recv_data_size[3] +
       m_inport_recv_data_size[4];
+      
       if(m_Verbosity){
-        std::cerr << __LINE__ << "  " << m_inport_recv_data_size_sum << std::endl;
+        std::cerr << "L." << __LINE__ << " total recieved data size " << m_inport_recv_data_size_sum << std::endl;
       }
+
       unsigned int  send_data_size = m_inport_recv_data_size_sum - 4*HEADER_BYTE_SIZE -4*FOOTER_BYTE_SIZE;
       unsigned char newheader[HEADER_BYTE_SIZE];
       unsigned char newfooter[FOOTER_BYTE_SIZE];
@@ -618,46 +621,46 @@ int BestEffortDispatcher::daq_run()
       //set new header with corrected data size
       memcpy(&m_in_data_sum.data[sumdatapoint],&newheader[0],HEADER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy header "  << std::endl;
+        std::cerr << "L." <<  __LINE__ << " copy header "  << std::endl;
       }
       sumdatapoint += HEADER_BYTE_SIZE;
       //set data from inport 0 (NIMEASIROC1)
       //memcpy(&m_in_data_sum.data[sumdatapoint],&m_in0_data.data[HEADER_BYTE_SIZE],m_inport0_recv_data_size-FOOTER_BYTE_SIZE);
       memcpy(&m_in_data_sum.data[sumdatapoint],&m_in0_data.data[HEADER_BYTE_SIZE],m_inport_recv_data_size[0]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy in 0 " << sumdatapoint << std::endl;
+        std::cerr << "L." << __LINE__ << " copy in 0 " << sumdatapoint << std::endl;
       }
       //set data from inport 1 (NIMEASIROC2)
       sumdatapoint += m_inport_recv_data_size[0]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE;
       memcpy(&m_in_data_sum.data[sumdatapoint],&m_in1_data.data[HEADER_BYTE_SIZE],m_inport_recv_data_size[1]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy in 1 " << sumdatapoint << std::endl;
+        std::cerr << "L." << __LINE__ << " copy in 1 " << sumdatapoint << std::endl;
       }
       //set data from inport 2 (Drs4Qdc1)
       sumdatapoint += m_inport_recv_data_size[1]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE;
       memcpy(&m_in_data_sum.data[sumdatapoint],&m_in2_data.data[HEADER_BYTE_SIZE],m_inport_recv_data_size[2]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy in 2 " << sumdatapoint << std::endl;
+        std::cerr << "L." << __LINE__ << " copy in 2 " << sumdatapoint << std::endl;
       }
       
       //set data from inport 3 (Drs4Qdc2)
       sumdatapoint += m_inport_recv_data_size[2]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE;
       memcpy(&m_in_data_sum.data[sumdatapoint],&m_in3_data.data[HEADER_BYTE_SIZE],m_inport_recv_data_size[3]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy in 3 " << sumdatapoint << std::endl;
+        std::cerr << "L." << __LINE__ << " copy in 3 " << sumdatapoint << std::endl;
       }
       //set data from inport 4 (HulScaler)
       sumdatapoint += m_inport_recv_data_size[3]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE;
       memcpy(&m_in_data_sum.data[sumdatapoint],&m_in4_data.data[HEADER_BYTE_SIZE],m_inport_recv_data_size[4]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << " copy in 4 " << sumdatapoint << std::endl;
+        std::cerr << "L." << __LINE__ << " copy in 4 " << sumdatapoint << std::endl;
       }
       
       //set new footer
       sumdatapoint += m_inport_recv_data_size[4]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE;
       memcpy(&m_in_data_sum.data[sumdatapoint],&newfooter[0],FOOTER_BYTE_SIZE);
       if(m_Verbosity){
-        std::cerr << __LINE__ << "recv size   " << m_inport_recv_data_size_sum << std::endl;
+        std::cerr << "L." << __LINE__ << "recv size   " << m_inport_recv_data_size_sum << std::endl;
         std::cerr << "NER   " <<    
         m_inport_recv_data_size[0]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE+
         m_inport_recv_data_size[1]-HEADER_BYTE_SIZE-FOOTER_BYTE_SIZE<< std::endl;
