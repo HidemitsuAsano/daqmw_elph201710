@@ -446,7 +446,7 @@ int NIMEASIROCReader1::daq_run()
 
 void NIMEASIROCReader1::MonitorMode()
 {
-  std::cout << " l." << __LINE__ << "Enter Monitoring Mode .. " << std::endl;
+  std::cout << " l." << __LINE__ << " Enter Monitoring Mode .. " << std::endl;
   unsigned char data =0;
   if(m_isSendADC){
     //enable ADC info. 

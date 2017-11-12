@@ -42,6 +42,7 @@ HulScalerReader1::HulScalerReader1(RTC::Manager* manager)
       m_recv_byte_size(0),
       m_data(),
       m_out_status(BUF_SUCCESS),
+      m_recvtimeout(10),
       m_debug(0)
 {
     // Registration: InPort/OutPort/Service
@@ -110,8 +111,8 @@ int HulScalerReader1::daq_configure()
     // If the specified value is 0, it resets the timeout. 
     // Otherwise, it sets the timeout value in seconds.
     // if SUCCESS returns, success. Oterwise, fatal error will be thrown.
-    //m_sock->setOptRecvTimeOut(3);
-    m_sock->setOptRecvTimeOut(10);
+    std::cout << "set receive/read timeout " << m_recvtimeout << " sec" << std::endl;
+    m_sock->setOptRecvTimeOut(m_recvtimeout);
 
     //set/reset Nagle algorithm
     //* The method sets or resets Nagle algorithm. If bool is true, it sets.
@@ -197,7 +198,7 @@ int HulScalerReader1::daq_configure()
       status = m_sock->read(rs,1);
       thrownSize++;
     }
-    std::cout << "ThrownDataSize: " << thrownSize << std::endl;
+    std::cout << std::dec <<  "ThrownDataSize: " << thrownSize << std::endl;
     
     /*
     rbcp_header rbcpHeader;
@@ -210,7 +211,7 @@ int HulScalerReader1::daq_configure()
     //using NIMIN as L1 trigger
     unsigned int sel_trig = TRM::reg_L1Ext;
     fModule->WriteModule(TRM::mid, TRM::laddr_sel_trig,  sel_trig);
-    std::cerr << "L." << __LINE__ << " set L1 trigger bit " << sel_trig << "  "  << ret << std::endl;
+    std::cerr << std::hex << "L." << __LINE__ << " set L1 trigger bit " << sel_trig << "  "  << ret << std::endl;
     std::cerr << "Read back " << fModule->ReadModule(TRM::mid, TRM::laddr_sel_trig,1) << std::endl;
     
     ret = fModule->WriteModule(SCR::mid, SCR::laddr_counter_reset,  1);

@@ -273,6 +273,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  std::string cmd = "chmod 444 " + logname_reader;
+  int sysout = system(cmd.c_str());
   
   std::string logname_reader1 = dir_name + "/log.NIMEASIROCReader2Comp_" + datafilename; 
   const boost::filesystem::path logfilereader1_a = logname_reader1;
@@ -283,6 +285,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_reader1;
+  sysout = system(cmd.c_str());
   
   std::string logname_reader2 = dir_name + "/log.Drs4QdcReader1Comp_" + datafilename; 
   const boost::filesystem::path logfilereader2_a = logname_reader2;
@@ -293,6 +297,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_reader2;
+  sysout = system(cmd.c_str());
   
   std::string logname_reader3 = dir_name + "/log.Drs4QdcReader2Comp_" + datafilename; 
   const boost::filesystem::path logfilereader3_a = logname_reader3;
@@ -303,6 +309,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_reader3;
+  sysout = system(cmd.c_str());
   
   std::string logname_reader4 = dir_name + "/log.HulScalerReader1Comp_" + datafilename; 
   const boost::filesystem::path logfilereader4_a = logname_reader4;
@@ -313,6 +321,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_reader4;
+  sysout = system(cmd.c_str());
   
   
   std::string logname_monitor = dir_name + "/log.MonitorComp_" + datafilename; 
@@ -324,6 +334,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_monitor;
+  sysout = system(cmd.c_str());
 
   std::string logname_logger = dir_name + "/log.DAQLoggerComp_" + datafilename; 
   const boost::filesystem::path logfilelogger_a = logname_logger;
@@ -334,6 +346,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_logger;
+  sysout = system(cmd.c_str());
 
   std::string logname_dispatcher = dir_name + "/log.BestEffortDispatcherComp_" + datafilename; 
   const boost::filesystem::path logfiledispatcher_a = logname_dispatcher;
@@ -344,6 +358,8 @@ int FileUtils::copy_logfiles(std::string dir_name)
     std::cout << ex.what() << std::endl;
     throw;
   }
+  cmd = "chmod 444 " + logname_dispatcher;
+  sysout = system(cmd.c_str());
 
 
   return 0;

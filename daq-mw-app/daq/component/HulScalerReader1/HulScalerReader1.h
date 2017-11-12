@@ -1,8 +1,7 @@
 // -*- C++ -*-
 /*!
  * @file HulScalerReader1
- * @brief This code is to read HUL scaler by DAQ-middleware as reader component.
- * This is transplanted from Dr.Honda's code which is made for standalone operation (http://openit.kek.jp/project/HUL)
+ * @brief This code is to read HUL scaler by a reader component of DAQ middleware
  * @date Oct. 3rd, 2017
  * @author Hidemitsu Asano
  * @e-mail hidemitsu.asano@riken.jp
@@ -26,7 +25,6 @@
 #include "standalone/src/CommandMan.hh"
 #include "standalone/src/FPGAModule.hh"
 #include "standalone/src/rbcp.h"
-//#include "standalone/src/daq_funcs.hh"
 #include <errno.h>
 
 class SiTcpRbcp;
@@ -95,6 +93,7 @@ private:
     int m_srcPort;                        /// Port No. of data server
     std::string m_srcAddr;                /// IP addr. of data server
     char*  m_board_ip;
+    unsigned int m_recvtimeout;
     bool m_debug;
     
 };
